@@ -1,8 +1,9 @@
+import './style.css'
+
 // 元素查询方法的绑定
 const $ = document.querySelector.bind(document), $$ = document.querySelectorAll.bind(document);
-
 // 默认配置对象
-const defultConfig = {
+const defultConfig: ImagePreviewConfig = {
     selector: '[preview]', // 图片预览节点选择器
     appendSelector: 'body', // 弹出层的插入dom节点的选择器
     clickDialogClose: true, // 点击蒙版是否关闭弹出框
@@ -37,9 +38,9 @@ const defultConfig = {
     }
 }
 
-const config = {};
+const config: ImagePreviewConfig = {};
 // 设置用户配置
-export function initConfig(userConf = {}) {
+function initConfig(userConf = {}) {
     Object.assign(config, defultConfig, userConf);
     bindEvent();
 }
@@ -52,13 +53,13 @@ function bindEvent() {
             return DialogOperator.openDialog(target.src);
         }
         // 点击遮罩层-关闭dialog
-        if (config.clickDialogClose && (target.classList.contains(config.class.class_dialog_wrapper) || target.classList.contains(config.class.class_image_wrapper))) {
-            return target.classList.contains(config.class.class_dialog_wrapper) ? DialogOperator.closeDialog(target) : DialogOperator.closeDialog(target.parentElement);
+        if (config.clickDialogClose && (target.classList.contains(config.class?.class_dialog_wrapper) || target.classList.contains(config.class?.class_image_wrapper))) {
+            return target.classList.contains(config.class?.class_dialog_wrapper) ? DialogOperator.closeDialog(target) : DialogOperator.closeDialog(target.parentElement);
         }
 
         // 点击操作按钮
-        if (target.classList.contains(config.class.class_operate_icon)) {
-            const imageNode = target.parentElement.parentElement.querySelector(`img.${config.class.class_image_content}`);
+        if (target.classList.contains(config?.class?.class_operate_icon)) {
+            const imageNode = target.parentElement.parentElement.querySelector(`img.${config?.class?.class_image_content}`);
             const typeName = target.getAttribute('name');
             if (typeName == 'zoomIn') {
                 return ImageOperator.ZoomIn(imageNode);
@@ -82,11 +83,11 @@ function bindEvent() {
 
 // 弹出框操作
 const DialogOperator = {
-    openDialog(imagePath) {
+    openDialog(imagePath:string) {
         // 已经创建了则直接替换
-        if ($(`${config.appendSelector}>.${config.class.class_dialog_wrapper}`)) {
-            const dialogWrapper = $(`${config.appendSelector}>.${config.class.class_dialog_wrapper}`);
-            const imageElement = dialogWrapper.querySelector(`img.${config.class.class_image_content}`);
+        if ($(`${config.appendSelector}>.${config?.class?.class_dialog_wrapper}`)) {
+            const dialogWrapper = $(`${config.appendSelector}>.${config?.class?.class_dialog_wrapper}`);
+            const imageElement = dialogWrapper.querySelector(`img.${config?.class?.class_image_content}`);
             imageElement.src = imagePath;
             dialogWrapper.style.display = 'block';
             return;
@@ -94,14 +95,14 @@ const DialogOperator = {
 
         // 没有则新建
         const dialogWrapper = document.createElement('div');
-        dialogWrapper.classList.add(config.class.class_dialog_wrapper);
+        dialogWrapper.classList.add(config?.class?.class_dialog_wrapper || '');
         dialogWrapper.innerHTML = `
-            <div class='${config.class.class_image_wrapper}'>
-                <img src='${imagePath}' draggable="false" alt="preview" class="${config.class.class_image_content}"/>
-                <div class='${config.class.class_operate_icon} ${config.class.class_close_icon}' style='background-image: url(${config.icons.close})' name='close'></div>
-                <div class='${config.class.class_action_wrapper}'>
-                    ${Object.entries(config.actionVisibleConfig).filter(([key, value]) => value).map(([key, value]) => `
-                            <div class='${config.class.class_operate_icon}' name='${key}' style='background-image: url(${config.icons[key]})'></div>
+            <div class='${config?.class?.class_image_wrapper}'>
+                <img src='${imagePath}' draggable="false" alt="preview" class="${config?.class?.class_image_content}"/>
+                <div class='${config?.class?.class_operate_icon} ${config?.class?.class_close_icon}' style='background-image: url(${config?.icons?.close})' name='close'></div>
+                <div class='${config?.class?.class_action_wrapper}'>
+                    ${Object.entries(config?.actionVisibleConfig || {}).filter(([key, value]) => value).map(([key, value]) => `
+                            <div class='${config?.class?.class_operate_icon}' name='${key}' style='background-image: url(${config.icons![key] || ''})'></div>
                         `).join('')
             }
                 </div>
@@ -110,13 +111,13 @@ const DialogOperator = {
         $(config.appendSelector).appendChild(dialogWrapper);
     },
 
-    closeDialog(dialogDom) {
-        const imageElement = dialogDom.querySelector(`img.${config.class.class_image_content}`);
-        imageElement.style = 'none'; //变换样式重置
+    closeDialog(dialogDom:HTMLElement) {
+        const imageElement = dialogDom.querySelector(`img.${config?.class?.class_image_content}`) as HTMLElement;
+        imageElement.style.transform = ''; //变换样式重置
         dialogDom.style.display = 'none';
     },
 
-    desotryDialog(dialogDom) {
+    desotryDialog(dialogDom:HTMLElement) {
         this.closeDialog(dialogDom);
         dialogDom.remove();
     }
@@ -126,7 +127,7 @@ const DialogOperator = {
 // CSS 的transform字符串和对象的转换， 如 scale(1.2) rotate(90deg) 变为 { scale: '1.2', rotate: '90deg' };
 const cssTransformUtil = {
     regExp: /(\w+)\(\s*(-?\w*\.?\w*)\s*\)/,
-    getNumberOfString(str) {
+    getNumberOfString(str: string): number {
         let num = 0;
         if (!str) {
             return num;
@@ -137,7 +138,7 @@ const cssTransformUtil = {
         }
         return num;
     },
-    pareStrToObj(str) {
+    pareStrToObj(str: string): any {
         const obj = {};
         if (str) {
             const arr = String(str).split(' ');
@@ -162,8 +163,8 @@ const ImageOperator = {
     ZoomIn(imageNode) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preScale = cssTransformUtil.getNumberOfString(transformObj.scale) || 1;
-        let scaleNum = preScale + config.actionConfig.zoomStep;
-        if (preScale < config.actionConfig.maxScale) {
+        let scaleNum = preScale + config?.actionConfig?.zoomStep!;
+        if (preScale < config?.actionConfig?.maxScale!) {
             transformObj.scale = scaleNum;
             imageNode.style.transform = cssTransformUtil.stringfyObj(transformObj);
         }
@@ -172,8 +173,8 @@ const ImageOperator = {
     ZoomOut(imageNode) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preScale = cssTransformUtil.getNumberOfString(transformObj.scale) || 1;
-        let scaleNum = preScale - config.actionConfig.zoomStep;
-        if (preScale > config.actionConfig.minScale) {
+        let scaleNum = preScale - config.actionConfig!.zoomStep!;
+        if (preScale > config.actionConfig!.minScale!) {
             transformObj.scale = scaleNum;
             imageNode.style.transform = cssTransformUtil.stringfyObj(transformObj);
         }
@@ -182,8 +183,8 @@ const ImageOperator = {
     rotateLeft(imageNode) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preRotate = cssTransformUtil.getNumberOfString(transformObj.rotate) || 0;
-        let rotateDeg = config.actionConfig.rotateBack ?
-            (preRotate - config.actionConfig.rotateStepDeg) % 360 : (preRotate - config.actionConfig.rotateStepDeg);
+        let rotateDeg = config.actionConfig!.rotateBack ?
+            (preRotate - config.actionConfig!.rotateStepDeg!) % 360 : (preRotate - config.actionConfig!.rotateStepDeg!);
         transformObj.rotate = rotateDeg + 'deg';
         imageNode.style.transform = cssTransformUtil.stringfyObj(transformObj);
     },
@@ -191,9 +192,13 @@ const ImageOperator = {
     rotateRight(imageNode) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preRotate = cssTransformUtil.getNumberOfString(transformObj.rotate) || 0;
-        let rotateDeg = config.actionConfig.rotateBack ?
-            (preRotate + config.actionConfig.rotateStepDeg) % 360 : (preRotate + config.actionConfig.rotateStepDeg);
+        let rotateDeg = config.actionConfig!.rotateBack! ?
+            (preRotate + config.actionConfig!.rotateStepDeg!) % 360 : (preRotate + config.actionConfig!.rotateStepDeg!);
         transformObj.rotate = rotateDeg + 'deg';
         imageNode.style.transform = cssTransformUtil.stringfyObj(transformObj);
     },
+}
+
+export { 
+    initConfig, 
 }

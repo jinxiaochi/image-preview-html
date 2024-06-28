@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片预览-案例</title>
-    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../dist/style.css">
     <style>
         .page{
             padding: 40px;
@@ -19,7 +19,6 @@
     </style>
 </head>
 <body>
-    <script src="../src/index.js"></script>
     <div class="page">
         <img src="https://img.horion.com/mall/goods/51269-1.jpg" alt="" class="small-img" draggable="false" preview>
         <p>点击预览</p>
@@ -28,8 +27,9 @@
         <img src="https://img.horion.com/mall/goods/4776-section5-1312.png" alt="" class="small-img" draggable="false" preview>
         <p>点击预览</p>
     </div>
+    <script src="../dist/index.umd.js"></script>
     <script>
-        initConfig();
+        imagePreviewer.initConfig();
     </script>
 </body>
 </html>
