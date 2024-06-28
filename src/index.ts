@@ -152,15 +152,14 @@ const cssTransformUtil = {
         }
         return obj;
     },
-    stringfyObj(obj) {
-
+    stringfyObj(obj:any) {
         return Object.entries(obj).map(([key, val]) => `${key}(${val})`).join(' ');
     },
 }
 
 // 图片操作对象
 const ImageOperator = {
-    ZoomIn(imageNode) {
+    ZoomIn(imageNode:HTMLElement) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preScale = cssTransformUtil.getNumberOfString(transformObj.scale) || 1;
         let scaleNum = preScale + config?.actionConfig?.zoomStep!;
@@ -170,7 +169,7 @@ const ImageOperator = {
         }
     },
 
-    ZoomOut(imageNode) {
+    ZoomOut(imageNode:HTMLElement) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preScale = cssTransformUtil.getNumberOfString(transformObj.scale) || 1;
         let scaleNum = preScale - config.actionConfig!.zoomStep!;
@@ -180,7 +179,7 @@ const ImageOperator = {
         }
     },
 
-    rotateLeft(imageNode) {
+    rotateLeft(imageNode:HTMLElement) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preRotate = cssTransformUtil.getNumberOfString(transformObj.rotate) || 0;
         let rotateDeg = config.actionConfig!.rotateBack ?
@@ -189,7 +188,7 @@ const ImageOperator = {
         imageNode.style.transform = cssTransformUtil.stringfyObj(transformObj);
     },
 
-    rotateRight(imageNode) {
+    rotateRight(imageNode:HTMLElement) {
         const transformObj = cssTransformUtil.pareStrToObj(imageNode.style.transform);
         let preRotate = cssTransformUtil.getNumberOfString(transformObj.rotate) || 0;
         let rotateDeg = config.actionConfig!.rotateBack! ?
