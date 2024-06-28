@@ -1,4 +1,5 @@
-type ConfigClass = Partial<{
+
+export type ConfigClass = Partial<{
     class_image_wrapper: string,
     class_image_content: string,
     class_dialog_wrapper: string,
@@ -7,7 +8,7 @@ type ConfigClass = Partial<{
     class_close_icon: string,
 }>
 
-type ActionConfig = Partial<{
+export type ActionConfig = Partial<{
     zoomStep: number,
     minScale: number,
     maxScale: number,
@@ -15,14 +16,14 @@ type ActionConfig = Partial<{
     rotateBack: boolean,
 }>
 
-type ActionVisibility = Partial<{
+export type ActionVisibility = Partial<{
     zoomIn: boolean,
     zoomOut: boolean,
     rotateLeft: boolean,
     rotateRight: boolean,
 }>
 
-type ActionIcons = Partial<{
+export type ActionIcons = Partial<{
     zoomIn: string,
     zoomOut: string,
     rotateLeft: string,
@@ -30,7 +31,7 @@ type ActionIcons = Partial<{
     close: string,
 }>
 
-type ImagePreviewConfig = Partial<{
+export type ImagePreviewConfig = Partial<{
     selector: string,
     appendSelector: string,
     clickDialogClose: boolean,
@@ -39,3 +40,5 @@ type ImagePreviewConfig = Partial<{
     actionVisibleConfig: ActionVisibility,
     icons: ActionIcons,
 }>;
+
+export function initConfig(config: ImagePreviewConfig): void;

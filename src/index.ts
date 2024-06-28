@@ -1,3 +1,4 @@
+import type { ImagePreviewConfig } from '../type';
 import './style.css'
 
 // 元素查询方法的绑定
@@ -198,6 +199,8 @@ const ImageOperator = {
     },
 }
 
-export { 
+
+
+export default {
     initConfig, 
 }
