@@ -17,5 +17,9 @@
   "devDependencies": {
     "@types/node": "^20.14.9",
     "vite": "^5.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jinxiaochi/image-preview-html.git"
   }
 }
