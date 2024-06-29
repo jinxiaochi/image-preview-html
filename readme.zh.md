@@ -12,11 +12,18 @@
 
 ### 浏览器
 
-下载整个项目, 导入 `dist/index.umd.js`、 `dist/style.css` 和 `dist/index.umd.js.map`（可选，源码映射文件可以不加） 导入到你的项目: 
+下载整个项目, 导入 `dist/index.umd.js`、 `dist/style.css` 和 `dist/index.umd.js.map`（可选，源码映射文件可以不加） 到你的项目: 
 
 ```html
 <link rel="stylesheet" href="(your path)/style.css">
 <script src="(your path)/index.umd.js"></script>
+```
+
+或者，你也可以使用npm的CDN（确保您的网络稳定）
+
+```html
+<script src="https://unpkg.com/image-preview-html@latest/dist/style.css"></script>
+<script src="https://unpkg.com/image-preview-html@latest/dist/index.umd.js"></script>
 ```
 
 ### ESM 模块化

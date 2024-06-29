@@ -19,6 +19,13 @@ download this project, and import the `dist/index.umd.js`、 `dist/style.css` an
 <script src="(your path)/index.umd.js"></script>
 ```
 
+or you can use CDN of npm (ensure your network stable)
+
+```html
+<script src="https://unpkg.com/image-preview-html@latest/dist/style.css"></script>
+<script src="https://unpkg.com/image-preview-html@latest/dist/index.umd.js"></script>
+```
+
 ### on ESM Project
 
 ```shell
