@@ -2,6 +2,8 @@
 
 一个图片预览器，您可以旋转和缩放`img`标签的图片内容。
 
+[English Document](https://github.com/jinxiaochi/image-preview-html/blob/master/readme.md)
+
 ## 安装
 
 ### 浏览器
