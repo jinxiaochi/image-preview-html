@@ -4,6 +4,10 @@
 
 [English Document](https://github.com/jinxiaochi/image-preview-html/blob/master/readme.md)
 
+## 案例
+
+[案例](https://jinxiaochi.github.io/image-preview-html/demo/test.html)
+
 ## 安装
 
 ### 浏览器

@@ -4,6 +4,10 @@ this is an image previewer, which you can rotate and scale your `<img >` tag.
 
 [中文文档](https://github.com/jinxiaochi/image-preview-html/blob/master/readme.zh.md)
 
+## demo
+
+[demo](https://jinxiaochi.github.io/image-preview-html/demo/test.html)
+
 ## Install
 
 ### on Browser
