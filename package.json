@@ -1,6 +1,6 @@
 {
   "name": "image-preview-html",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "an image preview using only HTML CSS and Javascript",
   "main": "dist/index.es.js",
   "types": "type.d.ts",
