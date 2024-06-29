@@ -22,7 +22,7 @@
 或者，你也可以使用npm的CDN（确保您的网络稳定）
 
 ```html
-<script src="https://unpkg.com/image-preview-html@latest/dist/style.css"></script>
+<link rel="stylesheet" href="https://unpkg.com/image-preview-html@latest/dist/style.css"/>
 <script src="https://unpkg.com/image-preview-html@latest/dist/index.umd.js"></script>
 ```
 

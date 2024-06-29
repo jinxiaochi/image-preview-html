@@ -22,7 +22,7 @@ download this project, and import the `dist/index.umd.js`、 `dist/style.css` an
 or you can use CDN of npm (ensure your network stable)
 
 ```html
-<script src="https://unpkg.com/image-preview-html@latest/dist/style.css"></script>
+<link rel="stylesheet" href="https://unpkg.com/image-preview-html@latest/dist/style.css"/>
 <script src="https://unpkg.com/image-preview-html@latest/dist/index.umd.js"></script>
 ```
 
