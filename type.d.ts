@@ -42,3 +42,4 @@ export type ImagePreviewConfig = Partial<{
 }>;
 
 export function initConfig(config: ImagePreviewConfig): void;
+export function previewImage(imageUrl: string): void;
