@@ -20,6 +20,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jinxiaochi/image-preview-html.git"
+    "url": "git+https://github.com/jinxiaochi/image-preview-html.git"
   }
 }
