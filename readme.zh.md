@@ -66,6 +66,19 @@ imagePreview.initConfig();
 
 然后单击带有`preview`属性的`img`元素就可以了。
 
+### 直接预览图片
+
+```js
+import 'image-preview-html/dist/style.css';// Do not forget to import the style.css file
+import imagePreview from 'image-preview-html';
+
+imagePreview.initConfig();
+imagePreviewer.initConfig();
+document.querySelector('#previewBtn').addEventListener('click', function(){
+    imagePreviewer.previewImage('https://img.horion.com/mall/goods/51269-1.jpg'); // 预览图片的url地址
+});
+```
+
 ## 配置
 
 您可以自定义自己的图像预览器，其默认配置为：
