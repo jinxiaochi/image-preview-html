@@ -26,10 +26,14 @@
         <p>点击预览</p>
         <img src="https://img.horion.com/mall/goods/4776-section5-1312.png" alt="" class="small-img" draggable="false" preview>
         <p>点击预览</p>
+        <button id="previewBtn">预览图片</button>
     </div>
     <script src="../dist/index.umd.js"></script>
     <script>
         imagePreviewer.initConfig();
+        document.querySelector('#previewBtn').addEventListener('click', function(){
+            imagePreviewer.previewImage('https://img.horion.com/mall/goods/51269-1.jpg');
+        });
     </script>
 </body>
 </html>

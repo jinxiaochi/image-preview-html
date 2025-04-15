@@ -45,13 +45,18 @@ function initConfig(userConf = {}) {
     Object.assign(config, defultConfig, userConf);
     bindEvent();
 }
+
+function previewImage(imageUrl:string){
+    return DialogOperator.openDialog(imageUrl);
+}
+
 // 事件绑定-事件委托
 function bindEvent() {
     $('body').addEventListener('click', function (event) {
         const target = event.target;
         // 点击预览图片
         if (target.matches(config.selector)) {
-            return DialogOperator.openDialog(target.src);
+            return previewImage(target.src);
         }
         // 点击遮罩层-关闭dialog
         if (config.clickDialogClose && (target.classList.contains(config.class?.class_dialog_wrapper) || target.classList.contains(config.class?.class_image_wrapper))) {
@@ -203,4 +208,5 @@ const ImageOperator = {
 
 export default {
     initConfig, 
+    previewImage,
 }
