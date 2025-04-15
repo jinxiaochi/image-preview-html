@@ -1,6 +1,6 @@
-const y = document.querySelector.bind(document);
+const o = document.querySelector.bind(document);
 document.querySelectorAll.bind(document);
-const m = {
+const d = {
   selector: "[preview]",
   // 图片预览节点选择器
   appendSelector: "body",
@@ -44,38 +44,41 @@ const m = {
     close: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNzE5NDc2NTA2NTA4IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjExNTI3IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjQ4LjA0Njg3NSIgaGVpZ2h0PSI0OCI+PHBhdGggZD0iTTUxMy4zNDQgMGE1MTIgNTEyIDAgMSAwIDAgMTAyNCA1MTIgNTEyIDAgMCAwIDAtMTAyNHogbTIyNi4wNDggNjc0LjYyNGwtNTQuNTI4IDU2Ljg5Ni0xNzEuNTItMTY0LjkyOC0xNzEuMzkyIDE2NC45MjgtNTQuNTkyLTU2Ljg5Nkw0NTYuNTc2IDUxMiAyODcuMzYgMzQ5LjMxMmw1NC41OTItNTYuNzY4IDE3MS4zOTIgMTY0LjggMTcxLjUyLTE2NC44IDU0LjUyOCA1Ni43NjhMNTcwLjE3NiA1MTJsMTY5LjIxNiAxNjIuNjI0eiIgZmlsbD0iI2U2ZTZlNiIgcC1pZD0iMTE1MjgiPjwvcGF0aD48L3N2Zz4="
   }
 }, t = {};
-function d(e = {}) {
-  Object.assign(t, m, e), u();
+function u(e = {}) {
+  Object.assign(t, d, e), E();
 }
-function u() {
-  y("body").addEventListener("click", function(e) {
+function m(e) {
+  return y.openDialog(e);
+}
+function E() {
+  o("body").addEventListener("click", function(e) {
     var a, i, N, I, j;
     const M = e.target;
     if (M.matches(t.selector))
-      return r.openDialog(M.src);
+      return m(M.src);
     if (t.clickDialogClose && (M.classList.contains((a = t.class) == null ? void 0 : a.class_dialog_wrapper) || M.classList.contains((i = t.class) == null ? void 0 : i.class_image_wrapper)))
-      return M.classList.contains((N = t.class) == null ? void 0 : N.class_dialog_wrapper) ? r.closeDialog(M) : r.closeDialog(M.parentElement);
+      return M.classList.contains((N = t.class) == null ? void 0 : N.class_dialog_wrapper) ? y.closeDialog(M) : y.closeDialog(M.parentElement);
     if (M.classList.contains((I = t == null ? void 0 : t.class) == null ? void 0 : I.class_operate_icon)) {
       const s = M.parentElement.parentElement.querySelector(`img.${(j = t == null ? void 0 : t.class) == null ? void 0 : j.class_image_content}`), g = M.getAttribute("name");
       if (g == "zoomIn")
-        return o.ZoomIn(s);
+        return D.ZoomIn(s);
       if (g == "zoomOut")
-        return o.ZoomOut(s);
+        return D.ZoomOut(s);
       if (g == "rotateLeft")
-        return o.rotateLeft(s);
+        return D.rotateLeft(s);
       if (g == "rotateRight")
-        return o.rotateRight(s);
+        return D.rotateRight(s);
       if (g == "close")
-        return r.closeDialog(s.parentElement.parentElement);
+        return y.closeDialog(s.parentElement.parentElement);
     }
   });
 }
-const r = {
+const y = {
   openDialog(e) {
     var a, i, N, I, j, s, g, T, z, L;
-    if (y(`${t.appendSelector}>.${(a = t == null ? void 0 : t.class) == null ? void 0 : a.class_dialog_wrapper}`)) {
-      const l = y(`${t.appendSelector}>.${(i = t == null ? void 0 : t.class) == null ? void 0 : i.class_dialog_wrapper}`), D = l.querySelector(`img.${(N = t == null ? void 0 : t.class) == null ? void 0 : N.class_image_content}`);
-      D.src = e, l.style.display = "block";
+    if (o(`${t.appendSelector}>.${(a = t == null ? void 0 : t.class) == null ? void 0 : a.class_dialog_wrapper}`)) {
+      const r = o(`${t.appendSelector}>.${(i = t == null ? void 0 : t.class) == null ? void 0 : i.class_dialog_wrapper}`), l = r.querySelector(`img.${(N = t == null ? void 0 : t.class) == null ? void 0 : N.class_image_content}`);
+      l.src = e, r.style.display = "block";
       return;
     }
     const M = document.createElement("div");
@@ -84,15 +87,15 @@ const r = {
                 <img src='${e}' draggable="false" alt="preview" class="${(s = t == null ? void 0 : t.class) == null ? void 0 : s.class_image_content}"/>
                 <div class='${(g = t == null ? void 0 : t.class) == null ? void 0 : g.class_operate_icon} ${(T = t == null ? void 0 : t.class) == null ? void 0 : T.class_close_icon}' style='background-image: url(${(z = t == null ? void 0 : t.icons) == null ? void 0 : z.close})' name='close'></div>
                 <div class='${(L = t == null ? void 0 : t.class) == null ? void 0 : L.class_action_wrapper}'>
-                    ${Object.entries((t == null ? void 0 : t.actionVisibleConfig) || {}).filter(([l, D]) => D).map(([l, D]) => {
+                    ${Object.entries((t == null ? void 0 : t.actionVisibleConfig) || {}).filter(([r, l]) => l).map(([r, l]) => {
       var n;
       return `
-                            <div class='${(n = t == null ? void 0 : t.class) == null ? void 0 : n.class_operate_icon}' name='${l}' style='background-image: url(${t.icons[l] || ""})'></div>
+                            <div class='${(n = t == null ? void 0 : t.class) == null ? void 0 : n.class_operate_icon}' name='${r}' style='background-image: url(${t.icons[r] || ""})'></div>
                         `;
     }).join("")}
                 </div>
             <div>
-        `, y(t.appendSelector).appendChild(M);
+        `, o(t.appendSelector).appendChild(M);
   },
   closeDialog(e) {
     var a;
@@ -124,7 +127,7 @@ const r = {
   stringfyObj(e) {
     return Object.entries(e).map(([M, a]) => `${M}(${a})`).join(" ");
   }
-}, o = {
+}, D = {
   ZoomIn(e) {
     var N, I;
     const M = c.pareStrToObj(e.style.transform);
@@ -146,10 +149,11 @@ const r = {
     let a = c.getNumberOfString(M.rotate) || 0, i = t.actionConfig.rotateBack ? (a + t.actionConfig.rotateStepDeg) % 360 : a + t.actionConfig.rotateStepDeg;
     M.rotate = i + "deg", e.style.transform = c.stringfyObj(M);
   }
-}, E = {
-  initConfig: d
+}, w = {
+  initConfig: u,
+  previewImage: m
 };
 export {
-  E as default
+  w as default
 };
 //# sourceMappingURL=index.es.js.map
