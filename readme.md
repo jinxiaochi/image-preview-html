@@ -76,6 +76,7 @@ imagePreviewer.initConfig();
 document.querySelector('#previewBtn').addEventListener('click', function(){
     imagePreviewer.previewImage('https://img.horion.com/mall/goods/51269-1.jpg'); // the image url to preview
 });
+```
 
 ## Config
 
